@@ -1,5 +1,0 @@
-package com.chs.coreJava.lock;
-
-public class ProducerConsumerImpl {
-
-}

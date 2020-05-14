@@ -1,5 +1,0 @@
-package com.chs.coreJava.annotation;
-
-public class MyInvocationHandler {
-
-}

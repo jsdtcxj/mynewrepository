@@ -1,5 +1,0 @@
-package com.chs.coreJava.repeatable.annotation;
-
-public @interface Hint {
-
-}

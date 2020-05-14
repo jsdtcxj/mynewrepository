@@ -1,9 +1,0 @@
-package com.chs.coreJava.clone;
-
-public class CloneExample {
-
-	public static void main(String[] args) {
-		Employee employee = new Employee("James", 32);
-	}
-
-}

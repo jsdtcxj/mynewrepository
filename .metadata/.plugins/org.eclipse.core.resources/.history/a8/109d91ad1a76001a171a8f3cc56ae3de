@@ -1,8 +1,0 @@
-package com.chs.springBoot.springBoot.repository;
-
-import com.chs.springBoot.springBoot.entity.Book;
-import org.springframework.data.repository.CrudRepository;
-
-public class BookRepository extends CrudRepository<Book, Long> {
-
-}

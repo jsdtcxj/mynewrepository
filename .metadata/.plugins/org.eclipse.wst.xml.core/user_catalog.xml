@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-  <system systemId="http://www.springframework.org/schema/beans/spring-beans.xsd" uri="platform:/resource/test/src/main/java/spring-beans.xsd"/>
-  <system systemId="http://www.springframework.org/schema/context/spring-context.xsd" uri="platform:/resource/test/src/main/java/spring-context.xsd"/>
-</catalog>
