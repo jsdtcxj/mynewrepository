@@ -1,0 +1,105 @@
+package org.fkit.hellotest;
+
+import java.util.LinkedList;
+import java.util.Stack;
+
+public class TestTree {
+
+	class TreeNode{
+		public int val;
+		public TreeNode left;
+		public TreeNode right;
+	}
+	
+	public static void main(String[] args) {
+		int[] a = {1,2,3,4,5,6,7};
+		TestTree t = new TestTree();
+		TreeNode tree = t.arrayToTree(a);
+		Stack<TreeNode> stack = new Stack<>();
+		TreeNode node = tree;
+		t.printTree(tree);
+		while(node != null || !stack.isEmpty()) {
+			if(node != null) {
+				while(node != null) {
+					stack.push(node);
+					node = node.left;
+				}
+			} else {
+				node = stack.pop();
+				System.out.print(node.val + " ");
+				node = node.right;
+			}
+		}
+		
+		System.out.println("***************************");
+		TreeNode temp = t.new TreeNode();
+		TreeNode root = temp;
+		temp.val = 6;
+		TreeNode left = t.new TreeNode();
+		temp.left = left;
+		left.val = 3;
+		TreeNode right = t.new TreeNode();
+		temp.right = right;
+		right.val = -7;
+		temp = left;
+		left = t.new TreeNode();
+		left.val = -1;
+		temp.left = left;
+		right = t.new TreeNode();
+		right.val = 9;
+		temp.right = right;
+		t.calculate(root);
+		System.out.println("Max: " + max);
+	}
+	
+	public void printTree(TreeNode node) {
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		queue.offer(node);
+		while(!queue.isEmpty()) {
+			int size = queue.size();
+			for(int i = 0; i < size; i++) {
+				TreeNode tree = queue.poll();
+				System.out.print(tree.val);
+				if(tree.left != null) queue.offer(tree.left);
+				if(tree.right != null) queue.offer(tree.right);
+			}
+			System.out.println();
+		}
+	}
+	
+	public TreeNode arrayToTree(int[] a) {
+		if(a == null || a.length == 0) return null;
+		return buildTree(0, a.length-1, a);
+	}
+	
+	public TreeNode buildTree(int start, int end, int[] a) {
+		if(start <= end) {
+			int mid = start + (end-start)/2;
+			TreeNode node = new TreeNode();
+			node.val = a[mid];
+			node.left = buildTree(start, mid-1, a);
+			node.right = buildTree(mid+1, end, a);
+			return node;
+		}
+		return null;
+	}
+	
+	private Integer max = null;
+	public int calculate(TreeNode node) {
+		if(node == null) return 0;
+		int val = node.val;
+		int leftSum = calculate(node.left);
+		int rightSum = calculate(node.right);
+		int sum = val+leftSum+rightSum;
+		
+		if(node.left != null && node.right != null) {
+			sum = Math.max(sum, Math.max(leftSum, rightSum));
+		} else if(node.left != null) {
+			sum = Math.max(sum, leftSum);
+		} else if(node.right != null) {
+			sum = Math.max(sum, rightSum);
+		} 
+		max = (max == null) ? sum : Math.max(max, sum);
+		return sum;
+	}
+}

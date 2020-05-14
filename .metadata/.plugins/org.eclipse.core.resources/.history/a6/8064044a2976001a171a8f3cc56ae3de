@@ -1,0 +1,10 @@
+package com.chs.springBoot.springBoot.service;
+
+import com.chs.springBoot.springBoot.entity.Book;
+
+public interface BookService {
+	
+	void save(Book book);
+	
+	Book findByName(String name);
+}

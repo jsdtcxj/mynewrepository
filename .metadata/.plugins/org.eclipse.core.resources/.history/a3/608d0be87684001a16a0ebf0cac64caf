@@ -1,0 +1,6 @@
+package com.chs.coreJava.repeatable.annotation;
+
+@Hint("hint1")
+public class Person {
+
+}

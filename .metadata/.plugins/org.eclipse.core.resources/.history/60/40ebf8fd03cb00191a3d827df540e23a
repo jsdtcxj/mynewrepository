@@ -1,0 +1,58 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{1,2,3},{1,2,3},{1,2,3}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {""};
+        System.out.println(s.convert("123456", 3));
+//        s.rotate(matrix);
+   }
+	
+	public String convert(String s, int numRows) {
+	    StringBuilder ans = new StringBuilder();
+	    if(s == null || s.length() < 2 || numRows < 2) return s;
+	    StringBuilder[] strs = new StringBuilder[numRows];
+	    for(int i = 0; i < numRows-1; i++) {
+	        strs[i] = new StringBuilder();
+	    }
+	    
+	    int index = 0;
+	    int row = 0;
+	    boolean increase = false;
+	    while(index < s.length()) {
+	        strs[row].append(s.charAt(index++));
+	        if(row == 0 || row == numRows-1) increase = !increase;
+	        if(increase) {
+	            row++;
+	        } else {
+	            row--;
+	        }
+	    }
+	    
+	    for(StringBuilder sb : strs) {
+	        ans.append(sb.toString());
+	    }
+	    return ans.toString();
+	}
+}

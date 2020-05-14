@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert Title Here</title>
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}"/>
+<script type="text/javascript" th:src="@{js/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Thymeleaf if condition</h3>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<p th:each="person : ${persons}">
+					<span th:text="${person.name}"></span>
+					<span th:text="${person.school}"></span>
+					<span th:text="${person.book}"></span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

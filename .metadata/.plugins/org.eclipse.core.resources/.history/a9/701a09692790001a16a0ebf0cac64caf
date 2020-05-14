@@ -1,0 +1,18 @@
+package com.chs.coreJava.lock;
+
+public class LockConditionSample {
+
+	public static void main(String[] args) {
+		ProducerConsumerImpl pc = new ProducerConsumerImpl();
+		Runnable producer = () -> {
+			pc.put();
+		};
+
+		Runnable consumer = () -> {
+			pc.get();
+		};
+		
+		
+	}
+
+}

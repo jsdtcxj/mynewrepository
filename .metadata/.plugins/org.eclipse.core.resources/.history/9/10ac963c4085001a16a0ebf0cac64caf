@@ -1,0 +1,40 @@
+package com.chs.coreJava.thread;
+
+public class MultipleThreadSample {
+
+	public static void main(String[] args) {
+		Runnable waiter = ()->{
+			String name = Thread.currentThread().getName();
+			System.out.println("Wait on current thread ...");
+			synchronized(MultipleThreadSample.class) {
+				try {
+					MultipleThreadSample.class.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			System.out.println("Complete the activity!");
+		};
+		
+		Thread notifier = new Thread(()->{
+			String name = Thread.currentThread().getName();
+			synchronized(MultipleThreadSample.class) {
+				try {
+					Thread.sleep(1000L);
+					System.out.println("Notify the waiter ...");
+					MultipleThreadSample.class.notify();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		Thread t1 = new Thread(waiter);
+		Thread t2 = new Thread(waiter);
+		t1.start();
+		t2.start();
+		
+		notifier.start();
+	}
+
+}

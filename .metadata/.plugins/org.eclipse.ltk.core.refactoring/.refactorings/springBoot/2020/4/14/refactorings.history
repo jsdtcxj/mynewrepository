@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;BookServiceImpl.java&apos; to &apos;springBoot/src/main/java/com.chs.springBoot.springBoot.service&apos;&#x0A;- Original project: &apos;springBoot&apos;&#x0A;- Destination element: &apos;springBoot/src/main/java/com.chs.springBoot.springBoot.service&apos;&#x0A;- Original element: &apos;com.chs.springBoot.springBoot.BookServiceImpl.java&apos;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src\/main\/java&lt;com.chs.springBoot.springBoot.service" element1="/src\/main\/java&lt;com.chs.springBoot.springBoot{BookServiceImpl.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1585972724972" units="1" version="1.0"/>
+</session>

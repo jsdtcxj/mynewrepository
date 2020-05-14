@@ -1,0 +1,44 @@
+package org.fkit.springboot.test;
+
+import java.util.Arrays;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"bella","label","roller"};
+        int[] A = {1,2,3,4,5,6,7,8,9,10};
+        int[] B = {9,3,15,20,7};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.twoCitySchedCost("0110", 3));
+//        s.rotate(matrix);
+   }
+	//[[10,20],[30,200],[400,50],[30,20]]
+	public int twoCitySchedCost(int[][] costs) {
+        int len = costs.length, sum = 0;
+        int[] offset = new int[len];
+        for(int i = 0; i < len; i++) {
+            int a = costs[i][0], b = costs[i][1];
+            sum += a;
+            offset[i] = b-a;
+        }
+        Arrays.sort(offset);
+        for(int i = 0; i < len/4; i++) {
+            sum += offset[i];
+        }
+        return sum;
+    }
+}

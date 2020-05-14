@@ -1,0 +1,55 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] nums = {2,5,2,1,2};
+//		s.nextPermutation(nums);
+		
+        System.out.println(s.combinationSum2(nums, 7));
+	}
+	
+	List<List<Integer>> ans = new ArrayList<List<Integer>>();
+    int target = 0;
+    
+	public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        this.target = target;
+        if(candidates == null || candidates.length == 0) return ans;
+        
+        Arrays.sort(candidates);
+        findCombination2(candidates, 0, 0, new ArrayList<Integer>());
+        return ans;
+    }
+    
+    public void findCombination2(int[] candidates, int start, int sum, List<Integer> comb) {
+        if(sum < target) {
+            boolean duplicated = false;
+            for(int i = start; i < candidates.length && !duplicated; i++) {
+                int num = candidates[i];
+                long total = sum+num;
+                if(total > target) break;
+                if(i > start && candidates[i] == candidates[i-1]) continue;
+                
+                List<Integer> list = new ArrayList<Integer>();
+                list.addAll(comb);
+                list.add(num);
+                
+                findCombination2(candidates, i+1, (int)total, list);
+                
+            }
+        } else if(sum == target) {
+            ans.add(comb);
+        }
+    }
+}

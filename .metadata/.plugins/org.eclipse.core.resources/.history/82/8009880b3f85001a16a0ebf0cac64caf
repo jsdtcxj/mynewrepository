@@ -1,0 +1,10 @@
+package com.chs.coreJava.thread;
+
+public class MultipleThreadSample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,66 @@
+package org.fkit.springboot.test;
+
+import java.util.Arrays;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"bella","label","roller"};
+        int[] A = {1,2,3,4,5,6,7,8,9,10};
+        int[] B = {9,3,15,20,7};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.shipWithinDays(A, 5));
+//        s.rotate(matrix);
+   }
+	public int shipWithinDays(int[] weights, int D) {
+	    int total = 0;
+	    for(int weight : weights) {
+	        total += weight;
+	    }
+	    int min = total/D, max = total;
+	    while(min < max) {
+	        int mid = (min+max) >> 1;
+	        if(canShip(weights, mid, D)) {
+	            max = mid;
+	        } else {
+	            min = mid+1;
+	        }
+	    }
+	    return min;
+	}
+
+	public boolean canShip(int[] weights, int w, int d) {
+	    int temp = w;
+	    d--;
+	    for(int weight : weights) {
+	        if(weight > w) {
+	            return false;
+	        } else {
+	            if(weight > temp) {
+	                temp = w;
+	                d--;
+	            } else {
+	                temp -= weight;
+	            }
+	            if(d < 0) {
+	                return false;
+	            }
+	        }
+	    }
+	    return true;
+	}
+}

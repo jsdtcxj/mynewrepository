@@ -1,0 +1,49 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {1,15,7,9,2,5,10};
+        int[] B = {9,3,15,20,7};
+        int[][] points = {{2,3},{4,5},{6,7},{8,9},{1,10}};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.maxSumAfterPartitioning(A, 3));
+//        s.rotate(matrix);
+   }
+
+	public int maxSumAfterPartitioning(int[] A, int K) {
+        int len = A.length;
+        int[] dp = new int[len];
+        dp[0] = A[0];
+        for(int i = 1; i < len; i++) {
+            int max = A[i];
+            for(int j = i-1; j >=0 && j >= i-K+1; j--) {
+            	max = Math.max(max, A[j]);
+            	if(j >= 1) {
+            		dp[i] = Math.max(dp[i], max*(i-j+1)+dp[j-1]);
+            	} else {
+            		dp[i] = Math.max(dp[i], max*(i-j+1));
+            	}
+            }
+        }
+        return dp[len-1];
+    }
+ }

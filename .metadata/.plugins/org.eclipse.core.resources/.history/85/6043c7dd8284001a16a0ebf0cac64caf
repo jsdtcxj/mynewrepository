@@ -1,0 +1,24 @@
+package com.chs.coreJava.designPatterns;
+
+public class SingletonSample {
+	
+	private static SingletonSample singleton;
+	
+	private SingletonSample() {
+	}
+	
+	public static SingletonSample getInstance() {
+		if(singleton == null) {
+			synchronized(SingletonSample.class) {
+				singleton = new SingletonSample();
+			}
+		}
+		return singleton;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getInstance());
+		System.out.println(getInstance());
+	}
+
+}

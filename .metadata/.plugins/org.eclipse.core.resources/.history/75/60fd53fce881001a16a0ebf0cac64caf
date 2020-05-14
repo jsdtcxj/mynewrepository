@@ -1,0 +1,10 @@
+package com.chs.coreJava.methodConstructorRef;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Converter<String, Integer> converter = Integer::valueOf;
+		System.out.println(converter.convert("123"));
+	}
+
+}

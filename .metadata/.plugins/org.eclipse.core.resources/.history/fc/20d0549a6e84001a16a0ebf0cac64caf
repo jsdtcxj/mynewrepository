@@ -1,0 +1,9 @@
+package com.chs.coreJava.repeatable.annotation;
+
+import com.chs.coreJava.annotation.TesterInfo;
+import com.chs.coreJava.annotation.TesterInfo.Priority;
+
+@Hint("hint1")
+public class Person {
+
+}

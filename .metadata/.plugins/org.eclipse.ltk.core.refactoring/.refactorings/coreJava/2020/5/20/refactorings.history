@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Company.java&apos; to &apos;coreJava/src/com.chs.coreJava.clone&apos;&#x0A;- Original project: &apos;coreJava&apos;&#x0A;- Destination element: &apos;coreJava/src/com.chs.coreJava.clone&apos;&#x0A;- Original element: &apos;com.chs.coreJava.annotation.Company.java&apos;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;com.chs.coreJava.clone" element1="/src&lt;com.chs.coreJava.annotation{Company.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" log="/src&lt;com.chs.coreJava.annotation&#x09;/src&lt;com.chs.coreJava.clone" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1589164993565" units="1" version="1.0"/>
+</session>

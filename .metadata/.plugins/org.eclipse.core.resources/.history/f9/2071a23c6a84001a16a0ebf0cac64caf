@@ -1,0 +1,22 @@
+package com.chs.coreJava.repeatable.annotation;
+
+@Hint("hint1")
+@Hint("hint2")
+public class Test {
+
+	public static void main(String[] args) {
+//		Hints hints = Test.class.getAnnotation(Hints.class);
+//		for(Hint h : hints.value()) {
+//			System.out.println(h.value());
+//		}
+		
+		if(Test.class.isAnnotationPresent(Hints.class)) {
+			Hint[] hints2 = Test.class.getAnnotationsByType(Hint.class);
+			for(Hint h : hints2) {
+				System.out.println(h.value());
+			}
+		}
+		
+	}
+
+}

@@ -1,0 +1,80 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'A','B','C','E'},{'S','F','E','S'},{'A','D','E','E'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {1,2,3,0,0,0};
+        int[] B = {2,5,6};
+        int[][] points = {{0,0,0},{0,1,0},{0,0,0}};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.restoreIpAddresses("25525511135"));
+//        s.merge(A, 3, B, 3);
+   }
+
+	private List<String> list = new ArrayList();
+    public List<String> restoreIpAddresses(String s) {
+        if(s.length() >= 4) {
+            search(s, 0, 4, new StringBuilder());
+        }
+        return list;
+    }
+    
+    public void search(String s, int start, int count, StringBuilder sb) {
+        if(count == 0) {
+            int len = sb.length();
+            if(len-4 == s.length()) {
+                list.add(sb.substring(0, len-1));
+            }
+        } else {
+            int length = s.length();
+            int c1 = s.charAt(start)-'0';
+            if(count == 4 && c1 == 0) return;
+            if(start+1 < length) {
+                sb.append(c1).append(".");
+                search(s, start+1, count-1, sb);
+                int len = sb.length();
+                sb.delete(len-2, len);
+            }
+            
+            if(c1 > 0) {
+                if(start+2 < length) {
+                    int c2 = s.charAt(start+1)-'0';
+                    sb.append(c1).append(c2).append(".");
+                    search(s, start+2, count-1, sb);
+                    int len = sb.length();
+                    sb.delete(len-3, len);
+                }
+                
+                if(start+3 < length) {
+                    int c2 = s.charAt(start+1)-'0';
+                    int c3 = s.charAt(start+2)-'0';
+                    if(c1 == 1 || (c1 == 2 && (c2 < 5 ||(c2 == 5 && c3 <= 5)))) {
+                        sb.append(c1).append(c2).append(c3).append(".");
+                        search(s, start+3, count-1, sb);
+                        int len = sb.length();
+                        sb.delete(len-4, len);
+                    }
+                }
+            }
+        }
+    }
+
+ }

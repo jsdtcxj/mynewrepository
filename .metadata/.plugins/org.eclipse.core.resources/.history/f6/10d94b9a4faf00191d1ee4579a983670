@@ -1,0 +1,16 @@
+package org.fkit.springboot.test;
+
+import java.util.List;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"", "abc"};
+//		System.out.println(s.longestCommonPrefix(as));
+	}
+	
+	public List<List<Integer>> threeSum(int[] nums) {
+        return null;
+    }
+}

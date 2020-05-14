@@ -1,0 +1,22 @@
+package com.chs.coreJava.annotation.streams;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class StreamTest {
+
+	public static void main(String[] args) {
+		List<String> myList = Arrays.asList("a1","a2","b1","b2","c1","c2");
+		myList.stream()//a sequential stream
+			//.parallelStream() a parallel stream, 大数据量时使用，例如排序
+			.filter(a->a.startsWith("a"))
+			.forEach(System.out::println);
+		
+		//of
+		Stream.of("a1","a2","b1","b2","c1","c2")
+			.findFirst()
+			.ifPresent(System.out::println);
+	}
+
+}

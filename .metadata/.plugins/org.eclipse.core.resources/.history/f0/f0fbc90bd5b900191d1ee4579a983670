@@ -1,0 +1,59 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] nums = {-1,0,1,2,-1,-4};
+		System.out.println(s.strStr("", ""));
+		
+	}
+	
+	public int strStr(String haystack, String needle) {
+        if(needle == null || needle.length == 0) return 0;
+        
+        int i = 0, j = 0;
+        char[] text = haystack.toCharArray();
+        char[] ca = needle.toCharArray();
+        int[] next = getNext(ca);
+        while(i < haystack.length) {
+            if(j == -1 || text[i] = ca[j]) {
+                i++;
+                j++;
+            } else {
+                j = next[j];
+            }
+            if(j == needle.length) return i-j;
+        }
+        return -1;
+    }
+
+    public int[] getNext(char[] ca) {
+        int len = ca.length;
+        int[] next = new int[len];
+        int i = 0, j = -1;
+        next[0] = -1;
+        
+        while(i < len) {
+            if(j == -1 || ca[i] == ca[j]) {
+                i++;
+                j++;
+                next[i] = j;
+            } else {
+                j = next[j];
+            }
+        }
+        
+        return next;
+    }
+}

@@ -1,0 +1,9 @@
+INDEX VERSION 1.131
+/Users/xiaojin/eclipse/eclipse-workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/4003215031.index
+/springMVC/src/main/resources
+/Users/xiaojin/eclipse/eclipse-workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3103196589.index
+/springMVC/src/main/java
+/Users/xiaojin/eclipse/eclipse-workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1236542201.index
+/springboot/src/main/java
+/Users/xiaojin/eclipse/eclipse-workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1397256946.index
+/springBoot/src/main/resources

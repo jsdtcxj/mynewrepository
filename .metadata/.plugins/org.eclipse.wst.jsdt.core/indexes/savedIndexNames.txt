@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/Users/xiaojin/eclipse/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+3102029495.index
+2364383352.index
+4231635889.index
+4019144785.index
+869121002.index
+2536190918.index

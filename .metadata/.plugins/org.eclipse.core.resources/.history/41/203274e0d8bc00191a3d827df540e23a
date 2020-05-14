@@ -1,0 +1,52 @@
+package org.fkit.springboot.test;
+
+import org.fkit.springboot.test.model.Employee;
+import org.fkit.springboot.test.model.Student;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Application {
+	
+	public static void main(String[] args) {
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("Services.xml");
+		Employee employee = context.getBean("employee", Employee.class);
+		Employee e1 = context.getBean("e1", Employee.class);
+		Employee e2 = context.getBean("e2", Employee.class);
+		System.out.println("employee: " + employee.toString());
+		System.out.println("e1: " + e1.toString());
+		System.out.println("e2: " + e2.toString());
+//		person.setId(1000L);
+		
+		Employee.Manager manager = context.getBean("manager", Employee.Manager.class);
+		
+		Employee emp = context.getBean("emp", Employee.class);
+		
+		Student student = context.getBean("student", Student.class);
+		student.study("Happy weekend!");
+		student.study("Nice weekend!");
+		student.getEnBook().readBook("Good Job!");
+		
+		context.registerShutdownHook();
+		
+		System.out.println(Integer.MAX_VALUE + ", " + Integer.MIN_VALUE );
+		System.out.println("indexOF: " + "1".indexOf(""));
+		System.out.println("indexOF: " + (1^-1));
+	}
+	
+	public static boolean isPalindrome(int x) {
+        if(x< 0 || (x > 9 && x%10 == 0)) {
+            return false;
+        }
+        
+        long rev = 0;
+        while(x != 0) {
+            long p = x%10;
+            x = x / 10;
+            rev = rev*10+p;
+        }
+        
+        System.out.println(rev + ", " + x);
+        
+        return (rev-x) == 0;
+    }
+}

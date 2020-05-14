@@ -1,0 +1,66 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{1,2,3},{1,2,3},{1,2,3}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"bella","label","roller"};
+        int[] A = {3,9,20,15,7};
+        int[] B = {9,3,15,20,7};
+        System.out.println(s.bitwiseComplement(10));
+//        s.rotate(matrix);
+   }
+
+	public int bitwiseComplement(int N) {
+        int count = 0, temp = 1, ans = 0;
+        if(N == 0) return 1;
+        while(N > temp) {
+            temp <<= 1;
+            count++;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while(N > 0) {
+            if(N >= temp) {
+                N -= temp;
+                sb.append("1");
+            } else {
+                if(sb.length() > 0) {
+                    sb.append("0");
+                }
+            }
+            temp >>= 1;
+            count--;
+
+        }
+
+        temp = 1;
+        for(int i = sb.length()-1; i >= 0; i--) {
+            char c = sb.charAt(i);
+            if(c == '0') {
+                ans += temp;
+            }
+            temp <<= 1;
+        }
+        return ans;
+    }
+}

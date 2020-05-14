@@ -1,0 +1,41 @@
+package com.chs.coreJava.annotation.streams;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
+public class StreamTest {
+
+	public static void main(String[] args) {
+		List<String> myList = Arrays.asList("a1","a2","b1","b2","c1","c2");
+		myList.stream()//a sequential stream
+			//.parallelStream() a parallel stream, 大数据量时使用，例如排序
+			.sorted((a, b)-> b.compareTo(a))//修改排序规则
+			.filter(a->a.startsWith("a"))
+			.forEach(System.out::println);
+		
+		//of :  create a stream from a bunch of object reference
+		Stream.of("a1","a2","b1","b2","c1","c2")
+			.map(a->{
+				System.out.println("map : " + a);
+				return a.toUpperCase();
+			})
+			.anyMatch(a->{
+				System.out.println("AnyMatch : " + a);
+				return a.startsWith("B");
+			});//只要match上，就会停止执行
+		
+		//Streams cannot be reused. 
+		//As soon as you call any terminal operation the stream is closed:
+		//The example of reuse stream, just create a Supplier
+		Supplier<Stream<String>> streamSupplier = 
+				()-> Stream.of("a1","a2","b1","b2","c1","c2")
+						.filter(a->a.startsWith("a"));
+		System.out.println(streamSupplier.get().anyMatch(a->a.indexOf("a")>= 0));
+		System.out.println(streamSupplier.get().noneMatch(a->a.indexOf("a")>= 0));
+		
+		//collect 
+	}
+
+}

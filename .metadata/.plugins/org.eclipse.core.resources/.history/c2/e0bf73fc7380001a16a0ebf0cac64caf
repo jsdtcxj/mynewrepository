@@ -1,0 +1,15 @@
+package com.chs.coreJava.lambda;
+
+public class LambdaExpressionExample {
+
+	public static void main(String[] args) {
+		Drawable drawable = () -> {
+			System.out.println("Draw a picture ...");
+		};
+		
+		drawable.draw();
+		
+		Addable addable = (a, b) -> (a+b);
+		System.out.println("Addable : " + addable.add(5, 6));
+	}
+}

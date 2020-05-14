@@ -1,0 +1,14 @@
+package com.chs.coreJava.defaultMethods;
+
+public class DefaultMethodsTest {
+
+	public static void main(String[] args) {
+		Formula formula = new Formula() {
+			@Override
+			public double calculate(int a) {
+				return sqrt(a)*2;
+			}
+		};
+	}
+
+}

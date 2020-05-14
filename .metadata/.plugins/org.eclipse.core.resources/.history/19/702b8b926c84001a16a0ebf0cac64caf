@@ -1,0 +1,14 @@
+package com.chs.coreJava.repeatable.annotation;
+
+import com.chs.coreJava.annotation.TesterInfo;
+import com.chs.coreJava.annotation.TesterInfo.Priority;
+
+@Hint("hint1")
+@Hint("hint2")
+@TesterInfo (
+		priority=Priority.HIGH,
+		createdBy="chs.com",
+		tags= {"pig", "dog"})
+public class Person {
+
+}

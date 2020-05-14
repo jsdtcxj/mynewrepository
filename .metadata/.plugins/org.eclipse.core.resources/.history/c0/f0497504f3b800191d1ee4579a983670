@@ -1,0 +1,47 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] nums = {-1,0,1,2,-1,-4};
+		System.out.println(s.divide(-2147483648, -2));
+		
+	}
+	
+	 public int divide(int dividend, int divisor) {
+	        if(dividend == 0 || divisor == 1) return dividend;
+	        boolean isMin = dividend == Integer.MIN_VALUE;
+	        if(divisor == -1) {
+	            if(isMin) {
+	                return Integer.MAX_VALUE;
+	            } else {
+	                return 0-dividend;
+	            }
+	        }
+	        int a = isMin ? Integer.MAX_VALUE : Math.abs(dividend);
+	        int b = Math.abs(divisor);
+	        int ans = 0;
+	        
+	        while(a >= b) {
+	            a = a -b;
+	            ans++;
+	        }
+	        if(isMin && a+1 == b) ans++;
+	        
+	        if((dividend > 0 && divisor < 0) || (dividend < 0 && divisor >0)) {
+	            ans = 0 - ans;
+	        }
+	        return ans;
+	    }
+}

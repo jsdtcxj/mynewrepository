@@ -1,0 +1,51 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{1,2,3},{1,2,3},{1,2,3}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"bella","label","roller"};
+        System.out.println(s.clumsy(10));
+//        s.rotate(matrix);
+   }
+	
+	public int clumsy(int N) {
+        int ans = 0, count = 0, part = 0;
+        while(N > 0) {
+            if(N > 4) {
+                part = N*(N-1)/(N-2)+N-3;
+                ans = (ans == 0) ? part : (ans-part);
+            } else if(N == 4) {
+                part = 4*3/2;
+                ans = (ans == 0) ? (part+1) : (ans-part+1);
+            } else if(N == 3) {
+                ans = (ans == 0) ? 3*2/1 : (ans-3*2);
+            } else if(N == 2) {
+                ans = (ans == 0) ? 2*1 : (ans-2*1);
+            } else {
+                ans = (ans == 0) ? 1 : (ans -1);
+            }
+            N -= 4;
+        }
+        return ans;
+    }
+}

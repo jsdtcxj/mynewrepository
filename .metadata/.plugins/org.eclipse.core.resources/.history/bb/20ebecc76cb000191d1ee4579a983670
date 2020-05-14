@@ -1,0 +1,79 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"", "abc"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] nums = {-1,0,1,2,-1,-4};
+//		System.out.println(s.threeSum(nums));
+		
+		System.out.println(s.letterCombinations("232"));
+	}
+	
+	public List<String> letterCombinations(String digits) {
+	    List<String> ans = new ArrayList<String>();
+	    StringBuffer sb = new StringBuffer();
+	    for(int i = 0; i < digits.length(); i++) {
+	        char c = digits.charAt(i);
+	        sb.append(numToFirstChar(Integer.parseInt(String.valueOf(c))));
+	    }
+	    combination(ans, sb.toString(),0,true);  
+	    return ans;
+	}
+
+	private char numToFirstChar(int num) {
+	    char c = 'a';
+	    if(num < 8) {
+	        c = (char)(c + (num-2)*3);
+	    } else {
+	        c = (char)(c + (num-3)*3+4);
+	    }
+	    return c;
+	}
+
+	private int charToNum(char c) {
+	    int num = 2;
+	    int offset = c - 'a';
+	    if(offset == 7*3+2) {
+	        num = 9;
+	    } if(offset == 6*3) {
+	        num = 7;
+	    } else if(offset < 6*3) {
+	        num += offset/3;
+	    } else {
+	        num += (offset-1)/3;
+	    }
+	    return num;
+	}
+
+	private void combination(List<String> list, String base, int index, boolean flag) {
+		if(index < base.length()) {
+		    char c = base.charAt(index);
+		    int len = flag ? 3 : 4;
+		    for(int i = 0; i < len; i++) {
+		        StringBuilder sb = new StringBuilder();
+		        sb.append(base.substring(0,index)).append((char)(c+i));
+		        if(index+1 < base.length()) {
+		        	sb.append(base.substring(index+1, base.length()));
+		        }
+		        list.add(sb.toString());
+		        if(index+1 < base.length()) {
+		            int n = charToNum(base.charAt(index+1));
+		            combination(list, sb.toString(), index+1, (n==7 || n==9));
+		        }
+		    }
+		}
+	}
+	
+	
+}

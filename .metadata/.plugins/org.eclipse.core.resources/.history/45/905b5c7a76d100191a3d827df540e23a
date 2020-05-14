@@ -1,0 +1,63 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{0,0,0,0},{1,0,1,0},{0,1,1,0},{0,0,0,0}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"bella","label","roller"};
+        int[] A = {3,9,20,15,7};
+        int[] B = {9,3,15,20,7};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.numEnclaves(matrix));
+//        s.rotate(matrix);
+   }
+	private int count = 0;
+    public int numEnclaves(int[][] A) {
+        int row = A.length, column = A[0].length;
+        int[][] memo = new int[row][column];
+        int total = 0;
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < column; j++) {
+                int num = A[i][j];
+                if(num == 1) total++;
+                if(i == 0 || j == 0 || i == row-1 || j == column-1) {
+                    if(num == 1 && memo[i][j] != 1) findTrueOne(A, memo, i, j, row, column);
+                }
+            }
+        }
+        return total-count;
+    }
+    
+    public void findTrueOne(int[][] A, int[][] memo, int i, int j, int row, int column) {
+        count++;
+        memo[i][j] = 1;
+        int[] list = {i, j-1, i-1, j, i+1, j, i, j+1};
+        for(int k = 0; k < list.length; k=k+2) {
+            int r = list[k], c = list[k+1];
+            if(r >= 0 && r < row && c >= 0 && c < column) {
+                if(A[r][c] == 1 && memo[i][j] != 1) {
+                    findTrueOne(A, memo, r, c, row, column);
+                }
+            }
+        }
+    }
+}

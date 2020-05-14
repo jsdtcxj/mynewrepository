@@ -1,0 +1,67 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'X','X','X','X'},{'X','O','O','X'},{'X','X','O','X'},{'X','O','X','X'}};
+		int[][] matrix = {{0,0,0},{0,1,0},{0,0,0}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {5,1,2,3,4};
+        int[] B = {4,4,1,5,1};
+        int[][] points = {{0,0,0},{0,1,0},{0,0,0}};
+        String str = "110101011011000011011111000000";
+        String a = "hit";
+        String b = "cog";
+        List<String> list = Arrays.asList("hot","dot","dog","lot","log","cog");
+        
+        System.out.println(s.canCompleteCircuit(A, B));
+//        s.solve(board);
+   }
+    
+
+	public int canCompleteCircuit(int[] gas, int[] cost) {
+        int len = gas.length;
+        int[] offset = new int[len];
+        int sum = 0;
+        for(int i = 0; i < len; i++) {
+            offset[i] = gas[i]-cost[i];
+            sum += offset[i];
+        }
+
+        if(sum >=0) {
+            for(int i = 0; i < len; i++) {
+                if(offset[i] > 0) {
+                    int index = i;
+                    sum = 0;
+                    while(index%len < i) {
+                        sum += offset[index++];
+                        if(sum <0) return -1;
+                    }
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+ }

@@ -1,0 +1,33 @@
+package com.chs.coreJava.lock;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class ReentrantLockSample {
+	
+	public static void main(String[] args) {
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+		ReentrantLock lock = new ReentrantLock();
+		
+		executor.submit(()->{
+			lock.lock();
+			try {
+				System.out.println("Accquired the lock ..");
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				lock.unlock();
+				System.out.println("release the lock ...");
+			}
+		});
+		
+		executor.submit(()->{
+			lock.lock();
+			System.out.println("Try to get Lock ...");
+		});
+		
+		executor.shutdown();
+	}
+}

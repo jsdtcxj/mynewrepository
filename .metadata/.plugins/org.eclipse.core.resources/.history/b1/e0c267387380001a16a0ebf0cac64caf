@@ -1,0 +1,7 @@
+package com.chs.coreJava.lambda;
+
+@FunctionalInterface
+public interface Drawable {
+
+	void draw();
+}

@@ -1,0 +1,10 @@
+package com.chs.coreJava.innerClazz;
+
+public class StaticInnerClazz {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

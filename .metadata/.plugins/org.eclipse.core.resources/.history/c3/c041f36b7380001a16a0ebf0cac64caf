@@ -1,0 +1,12 @@
+package com.chs.coreJava.lambda;
+
+public class LambdaExpressionExample {
+
+	public static void main(String[] args) {
+		Drawable drawable = () -> {
+			System.out.println("Draw a picture ...");
+		}
+		
+		drawable.draw();
+	}
+}

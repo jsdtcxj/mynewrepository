@@ -1,0 +1,5 @@
+package com.chs.springBoot.springBoot.service;
+
+public interface BookService {
+
+}

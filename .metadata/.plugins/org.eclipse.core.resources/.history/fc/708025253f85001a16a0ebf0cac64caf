@@ -1,0 +1,26 @@
+package com.chs.coreJava.thread;
+
+public class MultipleThreadSample {
+
+	public static void main(String[] args) {
+		Runnable waiter = ()->{
+			String name = Thread.currentThread().getName();
+			synchronized(MultipleThreadSample.class) {
+				try {
+					MultipleThreadSample.class.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		
+		Thread nofifier = new Thread(()->{
+			String name = Thread.currentThread().getName();
+			synchronized(MultipleThreadSample.class) {
+				
+				MultipleThreadSample.class.notify();
+			}
+		});
+	}
+
+}

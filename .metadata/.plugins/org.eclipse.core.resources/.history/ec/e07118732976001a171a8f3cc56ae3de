@@ -1,0 +1,32 @@
+package com.chs.springBoot.springBoot.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.chs.springBoot.springBoot.entity.Book;
+import com.chs.springBoot.springBoot.repository.BookRepository;
+
+@Service
+public class BookServiceImpl implements BookService{
+	@Autowired
+	private BookRepository repository;
+	
+	@Override
+	public void save(Book book) {
+		repository.save(book);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Book findByName(String name) {
+		return (Book) repository.findByName(name);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Book getBookByAuthor(String name) {
+		return (Book) repository.getBookByAuthor(name);
+	}
+
+}

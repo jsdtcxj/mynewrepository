@@ -1,0 +1,119 @@
+package org.fkit.springboot.test;
+
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {6,7,7,6,9};
+        int[] B = {9,3,15,20,7};
+        int[][] points = {{1,2}};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.longestStrChain(strs));
+//        s.rotate(matrix);
+   }
+	//[[10,20],[30,200],[400,50],[30,20]]
+	public int longestStrChain(String[] words) {
+        Arrays.sort(words, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.length() - s2.length();
+            }
+        });
+        int len = words.length;
+        int[] dp = new int[len];
+        Arrays.fill(dp, 1);
+        int max = 0;
+        for(int i = 1; i < len; i++) {
+            for(int j = 0; j < i; j++) {
+                if(matchedPrev(words[j], words[i])) {
+                    dp[i] = Math.max(dp[i], dp[j]+1);
+                }
+            }
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
+    
+    public boolean matchedPrev(String s1, String s2) {
+    	int len1 = s1.length(), len2 = s2.length();
+    	if(len1+1 != len2) return false;
+        for(int i = 0, j = 0; i < len1; i++) {
+            char c1 = s1.charAt(i);
+            while(j < len2 && c1 != s2.charAt(j)) {
+            	j++;
+            }
+            if(j == len2 && (i < len1-1 || c1 != s2.charAt(j-1))) {
+            	return false;
+            }
+        }
+        return true;
+    }
+	
+//	public int longestStrChain(String[] words) {
+//        int len = words.length;
+//        /* 将字符串按照字典序重新排列 */
+//        Arrays.sort(words, new Comparator<String>() {
+//            @Override
+//            public int compare(String o1, String o2) {
+//                return Integer.compare(o1.length(), o2.length());
+//            }
+//        });
+//        /* dp[i] 表示 到 words[i] 为止最长的词链长度 */
+//        int[] dp = new int[len]; 
+//        for(int i = 0; i < len - 1; i++) {
+//            String a = words[i];
+//            for (int j = i + 1; j < len; j++) {
+//                String b = words[j];
+//                /* 判断 words[i] 是否是 words[j] 的前身 */
+//                if (isPredecessor(a, b)) {
+//                    dp[j] = Math.max(dp[j], dp[i]+1);
+//                }
+//
+//            }
+//            
+//        }
+//        /* 得到最终结果，由于最末尾的字符串不一定在最终词链里，因此dp[len-1]不一定是最终结果 */
+//        int res = 0;
+//        for (int i = 0; i < len; i++) {
+//            if (res < dp[i])  res = dp[i];
+//        }
+//        return res + 1;
+//    }
+    
+    private boolean isPredecessor(String stra, String strb) {
+        int i = 0;  // 字符串A的指针
+        int j = 0;  // 字符串B的指针
+        int lenA = stra.length();
+        int lenB = strb.length();
+        /* 排除长度相差不为一的情况 */
+        if (lenA != lenB-1) {
+            return false;
+        }
+        char[] a = stra.toCharArray();
+        char[] b = strb.toCharArray();
+        while (i < lenA && j < lenB) {
+            if (a[i] == b[j]) {
+                i++;
+            }
+            j++;
+        }
+        return i == lenA;
+    }
+ }

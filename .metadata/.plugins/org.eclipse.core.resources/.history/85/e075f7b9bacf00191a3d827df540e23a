@@ -1,0 +1,64 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{1,2,3},{1,2,3},{1,2,3}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"bella","label","roller"};
+        int[] A = {3,9,20,15,7};
+        int[] B = {9,3,15,20,7};
+        System.out.println(s.baseNeg2(2));
+//        s.rotate(matrix);
+   }
+
+	public String baseNeg2(int N) {
+	    List<Integer> list = new ArrayList();
+	    if(N == 0) return "0";
+	    list.add(0);
+	    int temp = 1, sum = 0;
+	    StringBuilder sb = new StringBuilder();
+	    while(sum < N) {
+	        if(temp > 0) sum += temp;
+	        list.add(temp);
+	        temp = temp * (-2);
+	    }
+	    divide(N, list, sb, 0);
+	    return sb.toString();
+	}
+
+	private void divide(int N, List<Integer> list, StringBuilder sb, int index) {
+	    if(N != 0) {
+	        int sum = 0, temp = 0;
+	        for(int i = (N > 0) ? 1 : 2; i < list.size(); i += 2) {
+	            temp = list.get(i);
+	            sum += temp;
+	            if(Math.abs(sum) >= N) {
+	                for(int j = 1; j < index-i; j++) {
+	                    sb.append('0');
+	                }
+	                sb.append('1');
+	                divide(N-temp, list, sb, i);
+	            }
+	        }
+	    } 
+	}
+}

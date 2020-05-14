@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert Title Here</title>
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}"/>
+<script type="text/javascript" th:src="@{js/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#loginbtn").click(function(){
+			var loginName = $("#loginName");
+			var password = $("#password");
+			var msg = "";
+			if(loginName.val() == "") {
+				msg = "Name shoul Not be Null";
+				loginName.focus();
+			} else if(password.val() == "") {
+				msg = "password should not be null";
+				password.focus();
+			}
+			
+			if(msg !="") {
+				alert(msg);
+			}else {
+				$("#loginform").submit();
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">Spring Boot Web</h3>
+		</div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="page-header">
+					<h2>User Login</h2>
+					<form class="form-horizontal" action="login" method="post" id="loginform">
+						<div class="form-group">
+							<div class="input-gorup col-md-4">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-user"></i>
+								</span>
+								<input class="form-control" placeholder="name/mail" type="text" name = "loginName" id="loginName"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-goroup col-md-4">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-lock"></i>
+								</span>
+								<input class="form-control" placeholder="password" type="password" name="password" id="password"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-4">
+								<div class="btn-group btn-group-justified">
+									<div class="btn-group">
+										<button type="button" class="btn btn-success" id="loginbtn">
+											<span class="glyphicon glyphicon-log-in"></span>
+										&nbsp;login</button>
+									</div>
+									<div class="btn-group">
+										<button type="button" class="btn btn-danger" id="registerbtn">
+											<span class="glyphicon glyphicon-edit"></span>
+											&nbsp;register</button>
+									</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

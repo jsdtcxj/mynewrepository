@@ -1,0 +1,78 @@
+package org.fkit.springboot.test;
+
+import java.util.Arrays;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'A','B','C','E'},{'S','F','E','S'},{'A','D','E','E'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {2,7,4,1,8,1};
+        int[] B = {9,3,15,20,7};
+        int[][] points = {{0,0,0},{0,1,0},{0,0,0}};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.exist(board, "ABCESEEEFS"));
+//        s.rotate(matrix);
+   }
+
+	private boolean ans = false;
+	private boolean[][] memo = null;
+	private char[][] board = null;
+	public boolean exist(char[][] board, String word) {
+	     if(word == null || word.length() == 0) {
+	        return true;
+	     }
+	     if(board == null || board.length == 0 || board[0].length == 0) {
+	        return false;
+	     }
+	     
+	     this.board = board;
+	     int m = board.length, n = board[0].length;
+	     this.memo = new boolean[m][n];
+	     for(int i = 0; i < m; i++) {
+	        for(int j = 0; j < n; j++) {
+	            if(search(i, j, word, 0)) {
+	            	return true;
+	            }
+	        }
+	     }
+	     return false;
+	}
+
+	public boolean search(int i, int j, String word, int start) {
+		int m = board.length, n = board[0].length, len = word.length();
+		boolean flag = false;
+	    if(start < len && board[i][j] == word.charAt(start)) {
+			if(start == len-1) {
+				return true;
+			} else {
+				memo[i][j] = true;
+				int[] index = {i-1, j, i+1, j, i, j-1, i, j+1};
+				for(int k = 0; k < index.length && !flag; k=k+2) {
+			        int row = index[k];
+			        int column = index[k+1];
+			        if(row >= 0 && row < m && column >= 0 && column < n && !memo[row][column]) {
+			        	flag = search(row, column, word, start+1);
+			        }
+			    }
+			    memo[i][j] = false;
+			}
+		}
+	    
+	    return flag;
+	}
+	
+ }

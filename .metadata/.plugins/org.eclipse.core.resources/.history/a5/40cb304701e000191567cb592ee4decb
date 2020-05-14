@@ -1,0 +1,72 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {2,7,4,1,8,1};
+        int[] B = {9,3,15,20,7};
+        int[][] points = {{0,0,0},{0,1,0},{0,0,0}};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.mySqrt(2147395599));
+//        s.rotate(matrix);
+   }
+
+//	public int mySqrt(int x) {
+//        if(x == 0 || x == 1) return x;
+//         int start = 0, end = x/2;
+//         long temp = 0;
+//         while(start < end) {
+//            int mid = start+(end-start)/2;
+//            temp = mid*mid;
+//            if(temp >= x) {
+//                end = mid;
+//            } else {
+//                start = mid+1;
+//            }
+//         }
+//         temp = start*start;
+//         return (temp > x) ? start-1 : start;
+//    }
+
+	public int mySqrt(int x) {
+        // 注意：针对特殊测试用例，例如 2147395599
+        // 要把搜索的范围设置成长整型
+        // 为了照顾到 0 把左边界设置为 0
+        long left = 0;
+        // # 为了照顾到 1 把右边界设置为 x // 2 + 1
+        long right = x / 2 + 1;
+        while (left < right) {
+            // 注意：这里一定取右中位数，如果取左中位数，代码会进入死循环
+            // long mid = left + (right - left + 1) / 2;
+            long mid = (left + right + 1) >>> 1;
+            long square = mid * mid;
+            if (square > x) {
+                right = mid - 1;
+            } else {
+                left = mid;
+            }
+        }
+        // 因为一定存在，因此无需后处理
+        return (int) left;
+    }
+
+ }

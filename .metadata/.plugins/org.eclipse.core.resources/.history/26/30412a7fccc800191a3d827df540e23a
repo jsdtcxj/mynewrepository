@@ -1,0 +1,73 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {3,5,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
+		int[][] matrix = {{1,2,3},{1,2,3},{1,2,3}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {""};
+        System.out.println(s.search(num1, 5));
+//        s.rotate(matrix);
+   }
+	
+	public int search(int[] nums, int target) {
+	    if(nums == null || nums.length == 0) return -1;
+        int start = 0, end = nums.length-1, mid = 0;
+        while(start < end) {
+            mid = (start+end)>>1;
+        	if(start == mid) {
+        		start = (nums[start] < nums[end]) ? start : end;
+        		break;
+        	}
+            if(nums[start] > nums[mid]) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+       
+        int last = nums.length-1;
+        if(start > 0) {
+        	if(target >= nums[0] && target <= nums[start-1]) {
+        		end = start-1;
+            	start = 0;
+        	} else if(target >= nums[start] && target <= nums[last]) {
+        		end = last;
+        	} else {
+        		return -1;
+        	}
+        } else {
+        	end = last;
+        }
+        
+        while(start < end) {
+        	mid = (start+end) >> 1;
+        	if(target > nums[mid]) {
+        		start = mid + 1;
+        	} else {
+        		end = mid;
+        	}
+        }
+        
+        return (target == nums[start]) ? start : -1;
+	}
+}

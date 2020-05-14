@@ -1,0 +1,95 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'A','B','C','E'},{'S','F','E','S'},{'A','D','E','E'}};
+		int[][] matrix = {{0,0,0},{0,1,0},{0,0,0}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {3,9,20,15,7};
+        int[] B = {9,3,15,20,7};
+        int[][] points = {{0,0,0},{0,1,0},{0,0,0}};
+        String str = "110101011011000011011111000000";
+        String a = "hit";
+        String b = "cog";
+        List<String> list = Arrays.asList("hot","dot","dog","lot","log","cog");
+        
+        System.out.println(s.ladderLength(a, b, list));
+//        s.merge(A, 3, B, 3);
+   }
+    
+	private Map<String, List<String>> map = new HashMap();
+    private int size = 0;
+    private Integer min = null;
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        size = wordList.size();
+        for(int i = 0; i < size; i++) {
+            for(int j = i+1; j < size; j++) {
+                String s1 = wordList.get(i);
+                String s2 = wordList.get(j);
+                if(isLadder(s1, s2)) {
+                    List<String> list1 = map.get(s1);
+                    if(list1 == null) {
+                        list1 = new ArrayList();
+                        map.put(s1, list1);
+                    }
+                    List<String> list2 = map.get(s2);
+                    if(list2 == null) {
+                        list2 = new ArrayList();
+                        map.put(s2, list2);
+                    }
+                    if(!list1.contains(s2)) list1.add(s2);
+                    if(!list2.contains(s1)) list2.add(s2);
+                }
+            }
+        }
+        search(endWord, beginWord, 0);
+        return (min == null) ? 1 : min.intValue();
+    }
+
+    public void search(String key, String beginWord, int count) {
+        if(count < size) {
+            List<String> value = map.get(key);
+            for(String s : value) {
+                if(isLadder(s, beginWord)) {
+                    min = (min == null) ? count+2 : Math.min(count+2, min);
+                } else {
+                    search(s, beginWord, count+1);
+                }
+            }
+        }
+    }
+
+    public boolean isLadder(String a, String b) {
+        boolean flag = false;
+        for(int i = 0; i < a.length(); i++) {
+            if(a.charAt(i) != b.charAt(i)) {
+                if(!flag) {
+                    flag = true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+ }

@@ -1,0 +1,107 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,5,2,1,2};
+//		s.nextPermutation(nums);
+		
+        System.out.println(s.multiply("0", "456"));
+	}
+	
+	public String multiply(String num1, String num2) {
+        StringBuilder ans = new StringBuilder();
+        if(num1.equals("0") || num2.equals("0")) return "0";
+        
+        char[] outer = null;
+        char[] inner = null;
+        if(num1.length() > num2.length()) {
+            outer = num2.toCharArray();
+            inner = num1.toCharArray();
+        } else {
+            outer = num1.toCharArray();
+            inner = num2.toCharArray();
+        }
+        
+        List<StringBuilder> list = new ArrayList<StringBuilder>();
+        for(int i = outer.length-1; i >= 0 ; i--) {
+            StringBuilder sb = new StringBuilder();
+            for(int n = outer.length-1; n > i; n--) {
+                sb.append(0);
+            }
+            int carry = 0;
+            for(int j = inner.length-1; j >= 0; j--) {
+                int a = Integer.valueOf(String.valueOf(outer[i]));
+                int b = Integer.valueOf(String.valueOf(inner[j]));
+                int product = a * b + carry;
+                carry = product/10;
+                sb.append(product%10);
+            }
+            if(carry > 0) sb.append(1);
+            list.add(sb);
+        }
+        
+        int carry = 0;
+        StringBuilder sb = new StringBuilder(list.get(0).toString());
+        for(int i = 1; i < list.size(); i++) {
+            StringBuilder sb1 = list.get(i);
+            StringBuilder sb2 = new StringBuilder(); 
+            
+            int j = 0;
+            carry = 0;
+            while(j < sb.length() && j < sb1.length()) {
+                int a = Integer.valueOf(sb.substring(j, j+1));
+                int b = Integer.valueOf(sb1.substring(j, j+1));
+                int sum = a + b + carry;
+                carry = sum/10;
+                sb2.append(sum%10);
+                j++;
+            }
+            
+            if(carry == 1) {
+            	if(j < sb.length()) {
+            		addRest(sb, sb2, j);
+            	} else if(j < sb1.length()) {
+            		addRest(sb1, sb2, j);
+            	} else {
+            		sb2.append(1);
+            	}
+            }
+            sb = sb2;
+            System.out.println(sb);
+        }
+        
+        for(int i = sb.length()-1; i >= 0; i--) {
+            ans.append(sb.substring(i,i+1));
+        }
+        return ans.toString();
+    }
+	
+	public void addRest(StringBuilder sb1, StringBuilder sb2, int j) {
+		int carry = 0;
+		while(j < sb1.length()) {
+            int a = Integer.valueOf(sb1.substring(j, j+1));
+            int sum = a + 1;
+            if(sum == 10) {
+            	sb2.append(0);
+            	carry = 1;
+            	j++;
+            } else {
+            	sb2.append(sum);
+            	break;
+            }
+        }
+		if(carry == 1)sb2.append(1);
+	}
+}

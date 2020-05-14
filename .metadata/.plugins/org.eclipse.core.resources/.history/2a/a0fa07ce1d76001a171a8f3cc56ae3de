@@ -1,0 +1,17 @@
+logging.level.org.springframework=INFO
+logging.level.com.chs.springBoot.springBoot=INFO
+logging.level.root=ERROR
+
+spring.datasource.url=jdbc:mysql://localhost:3306/springboot?useSSL=false
+spring.datasource.username=root
+spring.datasource.password=admin
+
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+
+spring.jpa.datasource=MySQL
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.ImprovedNamingStrategy
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+
+spring.main.banner-mode=off

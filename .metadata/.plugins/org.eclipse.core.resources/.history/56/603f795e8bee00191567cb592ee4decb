@@ -1,0 +1,76 @@
+package org.fkit.springboot.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
+public class Solution {
+	
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String[] as = {"flower","flow","flight"};
+//		System.out.println(s.longestCommonPrefix(as));
+		int[] num1 = {2,3,1};
+//		s.nextPermutation(num1);
+		char[][] board = {{'A','B','C','E'},{'S','F','E','S'},{'A','D','E','E'}};
+		int[][] matrix = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},{0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0},{0,1,1,1,1,1,0,0,1,0},{0,0,1,0,1,1,1,1,0,1},{0,1,1,0,0,0,1,1,1,1},{0,0,1,0,0,1,0,1,0,1},{1,0,1,0,1,1,0,0,0,0},{0,0,0,0,1,1,0,0,0,1}};
+//        s.rotate(matrix);
+//        for(int i = 0; i < matrix.length; i++) {
+//        	for(int j = 0; j < matrix[0].length; j++) {
+//        		System.out.print(matrix[i][j] + " ");
+//        	}
+//        	System.out.println();
+//        }
+        String[] strs = {"czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh"};
+        int[] A = {3,2,1,0,4};
+        int[] B = {2,5,6};
+        int[][] points = {{0,0,0},{0,1,0},{0,0,0}};
+        String str = "110101011011000011011111000000";
+        System.out.println(s.getPermutation(3, 5));
+//        s.merge(A, 3, B, 3);
+   }
+    
+	private int[] nums = null;
+	private boolean flag = true;
+	public String getPermutation(int n, int k) {
+	    nums = new int[n];
+	    for(int i = 0; i < n; i++) {
+	        nums[i] = i+1;
+	    }
+	    StringBuilder sb = new StringBuilder();
+	    search(k, 0 , sb);
+	    return sb.toString();
+	}
+
+	public void search(int k, int start, StringBuilder sb) {
+	    if(start == nums.length-1) {
+	        sb.append(nums[start]);
+	        flag = false;
+	    } else {
+	        int val = calculate(nums.length-start-1);
+	        for(int i = start; flag && i < nums.length; i++) {
+	            if(k > val) {
+	                k -= val;
+	            } else {
+	                int num = nums[i];
+	                for(int j = i-1; j >= start; j--) {
+	                    nums[j+1] = nums[j];
+	                }
+	                nums[start] = num;
+	                sb.append(num);
+	                search(k, start+1, sb);
+	            }
+	        }
+	    }
+	}
+
+	public int calculate(int n) {
+	    int num = 1;
+	    while(n > 0) {
+	        num *= n--;
+	    }
+	    return num;
+	}
+
+ }

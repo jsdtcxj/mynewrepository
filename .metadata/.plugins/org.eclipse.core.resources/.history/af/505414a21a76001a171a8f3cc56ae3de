@@ -1,0 +1,5 @@
+package com.chs.springBoot.springBoot.repository;
+
+public class BookRepository {
+
+}
